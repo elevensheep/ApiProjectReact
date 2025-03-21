@@ -1,0 +1,187 @@
+/* 공통 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+
+/* 헤더 스타일 */
+.header {
+    background-color: white;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+    margin: 0 auto;
+}
+
+/* 네비게이션 바 */
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    gap: 15px;
+    margin: 0;
+}
+
+.nav-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #333;
+    transition: color 0.3s;
+}
+
+.nav-item:hover {
+    color: #388e3c;
+}
+
+/* 🔥 기본 링크 스타일 제거 */
+.nav-item a {
+    text-decoration: none;  /* 밑줄 제거 */
+    color: black;  /* 기본 색상 변경 */
+    font-weight: bold;
+}
+
+/* 🔥 Hover(마우스 올렸을 때) 스타일 */
+.nav-item a:hover {
+    color: #ff6347; /* 원하는 색상으로 변경 (예: 주황색) */
+}
+
+/* 🔥 선택된 링크 (활성화된 페이지) 스타일 */
+.nav-item a.active {
+    color: #ff6347; /* 활성화된 상태일 때 색상 변경 */
+    font-weight: bold;
+    text-decoration: underline; /* 선택된 페이지 밑줄 */
+}
+
+/* h1 내부 Link 스타일 제거 */
+.header h1 a {
+    text-decoration: none; /* 밑줄 제거 */
+    color: black; /* 기본 텍스트 색상 */
+    font-weight: bold; /* 글자 두껍게 */
+}
+
+/* 선택된 상태일 때 스타일 유지 */
+.header h1 a:visited {
+    color: black; /* 방문한 링크 색상 변경 */
+}
+
+/* 마우스 올렸을 때 효과 */
+.header h1 a:hover {
+    color: #ff6347; /* 원하는 색상으로 변경 (예: 오렌지색) */
+}
+
+/* 검색창 스타일 */
+.search-bar {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* 메인 배너 */
+.banner {
+    background: black;
+    color: white;
+    text-align: center;
+    padding: 120px;
+    position: relative;
+    width: 50%;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 20px;
+}
+
+.banner img {
+    width: 200px;
+    height: auto;
+}
+
+/* 개별 책 아이템 스타일 */
+.book-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.book {
+    display: flex;
+    flex-wrap: wrap; /* 넘칠 경우 자동 줄바꿈 */
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 15px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    max-width: 1200px;
+    width: 40%;
+    min-height: 400px;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.book.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.book-image {
+    width: 200px; 
+    padding: 50px;
+    height: auto;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.book-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    min-width: 250px;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+.book-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.book-author,
+.book-publisher,
+.book-description,
+.book-isbn {
+    font-size: 16px;
+    color: #333;
+    margin: 8px 0;
+    word-wrap: break-word;
+}
+
+/* 푸터 스타일 */
+footer {
+    background-color: white;
+    color: black;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
