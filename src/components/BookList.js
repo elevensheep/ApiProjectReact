@@ -4,24 +4,51 @@ import Book from "./Book";
 import images from "./123.jpg";
 import "./BookList.css";
 
-const initialBooks = [
-    { title: "정치란 무엇인가", author: "김정치", publisher: "사회출판사", image: images, description: "정치의 기본 개념", isbn: "978-89-1234-222-1", category: "정치" },
-    { title: "현대 정치 분석", author: "박현대", publisher: "정치학 출판사", image: images, description: "현대 정치 구조", isbn: "978-89-1234-222-2", category: "정치" },
-    { title: "국제 정치 개론", author: "이국제", publisher: "국제관계 출판사", image: images, description: "국제 정치 개념", isbn: "978-89-1234-222-3", category: "정치" },
-    { title: "한국 정치의 역사", author: "정한국", publisher: "사회출판사", image: images, description: "한국 정치 변천사", isbn: "978-89-1234-222-4", category: "정치" },
-    { title: "대통령과 권력", author: "권력자", publisher: "정치학 출판사", image: images, description: "대통령제의 구조", isbn: "978-89-1234-222-5", category: "정치" },
-    { title: "정치의 기술", author: "박기술", publisher: "국제관계 출판사", image: images, description: "정치 협상과 전략", isbn: "978-89-1234-222-6", category: "정치" },
-];
+// 📌 책 데이터 생성
+const initialBooks = Array.from({ length: 20 }, (_, i) => ({
+    title: `정치의 기술 ${i + 1}`,
+    author: `저자 ${i + 1}`,
+    publisher: `출판사 ${i + 1}`,
+    image: images,
+    description: `정치 협상과 전략 ${i + 1}`,
+    category: "정치"
+}));
 
+// 📌 확장된 책의 위치 설정 함수
+const getGridPosition = (index, expanded) => {
+    if (!expanded) return {};
+
+    const gridRow = "span 2"; // ✅ 세로 2칸 차지
+
+    if ((index - 1) % 4 === 0) {
+        return { gridColumn: "1 / span 2", gridRow };
+    }
+
+    if ((index - 2) % 4 === 0) {
+        return { gridColumn: "2 / span 2", gridRow };
+    }
+
+    if ((index - 3) % 4 === 0) {
+        return { gridColumn: "2 / span 2", gridRow };
+    }
+
+    if (index % 4 === 0) {
+        return { gridColumn: "3 / span 2", gridRow };
+    }
+
+    return {};
+};
+
+
+// 📌 BookList 컴포넌트
 const BookList = () => {
     const { category } = useParams();
     const [selectedBook, setSelectedBook] = useState(null);
 
     const filteredBooks = category ? initialBooks.filter(book => book.category === category) : initialBooks;
 
-    // 📌 책 클릭 시 자리 차지하도록 설정
-    const handleBookClick = (isbn) => {
-        setSelectedBook(selectedBook === isbn ? null : isbn);
+    const handleBookClick = (index) => {
+        setSelectedBook(selectedBook === index ? null : index);
     };
 
     return (
@@ -30,10 +57,11 @@ const BookList = () => {
             <div className="book-grid">
                 {filteredBooks.map((book, index) => (
                     <Book
-                        key={book.isbn}
+                        key={index}
                         {...book}
-                        expanded={selectedBook === book.isbn} // 클릭 시 확장
-                        onClick={() => handleBookClick(book.isbn)}
+                        expanded={selectedBook === index}
+                        onClick={() => handleBookClick(index)}
+                        style={getGridPosition(index + 1, selectedBook === index)}
                     />
                 ))}
             </div>

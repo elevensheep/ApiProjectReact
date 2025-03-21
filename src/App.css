@@ -1,16 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 .jua-regular {
   font-family: "Jua", sans-serif;
-  font-weight: 400;
+  font-weight: 1;
   font-style: normal;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+body {
+    font-family: "Jua", sans-serif;
+    font-weight: 1;
+    font-style: normal;
+}
+
 
 .app {
   background-color: white;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  caret-color: transparent; /* 🔥 깜빡이는 커서 숨기기 */
+  
 }
+
 
 .content {
   flex: 1;

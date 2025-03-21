@@ -6,6 +6,7 @@ import BookList from "./components/BookList";
 import BookRecommendation from "./components/BookRecommendations";
 import Main from "./components/Main";
 import "./App.css";
+import Footer from "./components/Footer";
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                     <Route path="/" element={<Main />} />
                     <Route path="/category/:category" element={<BookList />} />
                 </Routes>
+                <Footer />
             </div>
         </Router>
     );

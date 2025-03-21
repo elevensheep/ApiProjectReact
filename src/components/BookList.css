@@ -36,7 +36,7 @@
     text-align: center;
     border-radius: 8px;
     overflow: hidden;
-    /* 🔥 강제 표시 */
+
     display: block !important;
     opacity: 1 !important;
     visibility: visible !important;
@@ -44,36 +44,35 @@
 
 /* 📌 클릭 시 2x2 크기로 정사각형 확장 */
 .book.expanded {
-    grid-column: span 2; /* 가로 2칸 */
-    grid-row: span 2; /* 세로 2칸 */
     width: 100%;
     height: 100%;
-    min-width: 520px; /* 🔥 확장된 크기 */
-    max-height: 563px;
+    min-width: 520px;
+    max-height: 540px;
     display: flex !important;
     opacity: 1 !important;
     visibility: visible !important;
-
 }
 
-/* 📌 1번째 책 클릭 시 (1, 2, 4, 5 자리 차지) */
-.book.expanded:nth-child(1) {
-    grid-column: 1 / span 2;
-    grid-row: 1 / span 2;
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(auto-fit, minmax(200px, auto));
+    gap: 15px;
+    width: 100%;
+    justify-content: center;
+    grid-auto-flow: dense;
 }
 
-/* 📌 2번째 & 3번째 책 클릭 시 (2, 3, 6, 7 자리 차지) */
-.book.expanded:nth-child(2),
-.book.expanded:nth-child(3) {
-    grid-column: 2 / span 2;
-    grid-row: 1 / span 2;
+/* 📌 클릭된 책이 2x2 크기로 확장되도록 설정 */
+.book.expanded {
+    grid-column: span 2 !important; /* 🔥 정확히 2칸 차지 */
+    grid-row: span 2 !important; /* 🔥 정확히 2칸 차지 */
 }
 
-/* 📌 4번째 책 클릭 시 (3, 4, 7, 8 자리 차지) */
-.book.expanded:nth-child(4) {
-    grid-column: 3 / span 2;
-    grid-row: 1 / span 2;
-}
+/* ✅ 첫 번째 열 (1, 5, 9...) */
+/* ✅ 첫 번째 열 (1, 5, 9...) → 정상 위치 */
+
+
 
 /* 📌 호버 효과 */
 .book:hover {
@@ -84,4 +83,28 @@
 
 .book.expanded img {
     width: 200px; /* 🔥 기존보다 40% 증가 */
+}
+
+
+.book:nth-child(4n - 3).expanded {
+    grid-column: 1 / span 2;
+    grid-row: span 2;
+}
+
+/* ✅ 두 번째 열 (2, 6, 10...) */
+.book:nth-child(4n - 2).expanded {
+    grid-column: 2 / span 2;
+    grid-row: span 2;
+}
+
+/* ✅ 세 번째 열 (3, 7, 11...) → 2번처럼 확장 */
+.book:nth-child(4n - 1).expanded {
+    grid-column: 2 / span 2;
+    grid-row: span 2;
+}
+
+/* ✅ 네 번째 열 (4, 8, 12...) → 3번처럼 확장 */
+.book:nth-child(4n).expanded {
+    grid-column: 3 / span 2;
+    grid-row: span 2;
 }
