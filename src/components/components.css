@@ -6,6 +6,10 @@ body {
     padding: 0;
 }
 
+
+h2 {
+    font-weight: normal;
+}
 /* 헤더 스타일 */
 .header {
     background-color: white;
@@ -21,23 +25,36 @@ body {
 .nav {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 14px;
 }
 
 .nav-menu {
     display: flex;
     list-style: none;
     padding: 0;
+    gap: 10px;
+}
+
+.nav-links {
+    display: flex;
     gap: 15px;
-    margin: 0;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .nav-item {
     padding: 10px 15px;
     cursor: pointer;
-    font-weight: bold;
     color: #333;
     transition: color 0.3s;
+    font-size: 18px;
 }
 
 .nav-item:hover {
@@ -46,45 +63,80 @@ body {
 
 /* 🔥 기본 링크 스타일 제거 */
 .nav-item a {
-    text-decoration: none;  /* 밑줄 제거 */
-    color: black;  /* 기본 색상 변경 */
-    font-weight: bold;
+    text-decoration: none;
+    /* 밑줄 제거 */
+    color: black;
 }
 
 /* 🔥 Hover(마우스 올렸을 때) 스타일 */
 .nav-item a:hover {
-    color: #ff6347; /* 원하는 색상으로 변경 (예: 주황색) */
+    color: #ff6347;
+    /* 원하는 색상으로 변경 (예: 주황색) */
 }
 
 /* 🔥 선택된 링크 (활성화된 페이지) 스타일 */
 .nav-item a.active {
-    color: #ff6347; /* 활성화된 상태일 때 색상 변경 */
-    font-weight: bold;
-    text-decoration: underline; /* 선택된 페이지 밑줄 */
+    color: #ff6347;
+    /* 활성화된 상태일 때 색상 변경 */
+    text-decoration: underline;
+    /* 선택된 페이지 밑줄 */
 }
+
+
+
+
 
 /* h1 내부 Link 스타일 제거 */
 .header h1 a {
-    text-decoration: none; /* 밑줄 제거 */
-    color: black; /* 기본 텍스트 색상 */
-    font-weight: bold; /* 글자 두껍게 */
+    text-decoration: none;
+    /* 밑줄 제거 */
+    color: black;
+    /* 기본 텍스트 색상 */
+    font-weight: normal;
+    font-size: 32px;
 }
 
 /* 선택된 상태일 때 스타일 유지 */
 .header h1 a:visited {
-    color: black; /* 방문한 링크 색상 변경 */
+    color: black;
+    /* 방문한 링크 색상 변경 */
 }
 
 /* 마우스 올렸을 때 효과 */
 .header h1 a:hover {
-    color: #ff6347; /* 원하는 색상으로 변경 (예: 오렌지색) */
+    color: #ff6347;
+    /* 원하는 색상으로 변경 (예: 오렌지색) */
 }
 
 /* 검색창 스타일 */
-.search-bar {
-    padding: 8px;
+.search-container {
+    display: flex;
+    /* 🔥 가로 정렬 */
+    align-items: center;
+    /* 🔥 수직 가운데 정렬 */
+    gap: 8px;
+    /* 🔥 input과 아이콘 간 간격 조정 */
     border: 1px solid #ccc;
     border-radius: 4px;
+    padding: 4px 8px;
+    /* 🔥 내부 여백 */
+    width: fit-content;
+    /* 🔥 내용에 맞게 크기 조절 */
+}
+
+/* 검색창 스타일 */
+.search-input {
+    border: none;
+    outline: none;
+    padding: 8px;
+    font-size: 13px;
+}
+
+/* 검색 아이콘 스타일 */
+.search-icon {
+    cursor: pointer;
+    color: #666;
+    /* 🔥 색상 조정 */
 }
 
 /* 메인 배너 */
@@ -117,7 +169,8 @@ body {
 
 .book {
     display: flex;
-    flex-wrap: wrap; /* 넘칠 경우 자동 줄바꿈 */
+    flex-wrap: wrap;
+    /* 넘칠 경우 자동 줄바꿈 */
     border: 2px solid #ddd;
     border-radius: 12px;
     padding: 24px;
@@ -139,7 +192,7 @@ body {
 }
 
 .book-image {
-    width: 200px; 
+    width: 200px;
     padding: 50px;
     height: auto;
     border-radius: 8px;
@@ -159,7 +212,8 @@ body {
 
 .book-title {
     font-size: 22px;
-    font-weight: bold;
+    
+    font-weight: normal;
     margin: 0;
 }
 
