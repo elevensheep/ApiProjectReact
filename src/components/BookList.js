@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Book from "./Book";
 import images from "./123.jpg";
 import "./BookList.css";
+import Banner from "./Banner";
 
 // 📌 책 데이터 생성
 const initialBooks = Array.from({ length: 20 }, (_, i) => ({
@@ -53,6 +54,7 @@ const BookList = () => {
 
     return (
         <div className="book-list">
+            <Banner />
             <h2>{category ? `${category} 관련 도서` : "📚 전체 추천 도서"}</h2>
             <div className="book-grid">
                 {filteredBooks.map((book, index) => (

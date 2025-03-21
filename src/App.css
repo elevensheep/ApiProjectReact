@@ -103,11 +103,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 65%;
+  width: 100%;
   max-width: 1100px;
   height: 200px;
   background-color: black;
-  text-align: center;
   margin-bottom: 20px;
 }
 

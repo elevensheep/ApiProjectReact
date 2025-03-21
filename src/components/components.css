@@ -144,17 +144,24 @@ h2 {
     background: black;
     color: white;
     text-align: center;
-    padding: 120px;
-    position: relative;
-    width: 50%;
+    padding: 100px 0; /* padding 조정 */
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     border-radius: 20px;
-}
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 300px; /* 🔥 높이 통일 */
+}
 .banner img {
-    width: 200px;
+    width: 180px; /* 🔥 booklist와 동일한 크기 */
     height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 /* 개별 책 아이템 스타일 */
@@ -238,4 +245,13 @@ footer {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 중앙 정렬 */
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
 }
