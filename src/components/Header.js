@@ -26,7 +26,7 @@ function Header() {
   useEffect(() => {
     const checkLogin = async () => {
       try {
-        await axios.get("http://localhost:8080/", {
+        await axios.get("http://localhost:8080/api/books", {
           withCredentials: true, // JWT 쿠키 포함
         });
         setIsLoggedIn(true);

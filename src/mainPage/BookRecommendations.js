@@ -11,19 +11,17 @@ function BookList() {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/", {
-          withCredentials: true,
-        });
-        setBooks(response.data);
+        const response = await axios.get("http://localhost:8080/api/books");
+        setBooks(response.data.content);
+        console.log("BookList: ", response.data.content);
       } catch (error) {
-        if (error.response?.status === 401 || error.response?.status === 403) {
-          alert("로그인이 필요합니다.");
-          navigate("/login");
-        } else if (error.response?.status === 404) {
+        if (error.response?.status === 404) {
           setErrorMessage("📭 오늘의 추천 도서가 없습니다.");
         } else {
           console.error("❌ 도서 데이터 불러오기 실패:", error);
-          setErrorMessage("🚨 서버 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
+          setErrorMessage(
+            "🚨 서버 오류가 발생했습니다. 잠시 후 다시 시도해 주세요."
+          );
         }
       } finally {
         setLoading(false);
@@ -43,8 +41,8 @@ function BookList() {
       ) : (
         <ul>
           {books.map((book) => (
-            <li key={book.isbn}>
-              {book.title} - {book.author}
+            <li key={book.bookIsbn}>
+              {book.bookTitle} - {book.bookAuthor}
             </li>
           ))}
         </ul>
