@@ -6,6 +6,7 @@ import Main from "./mainPage/Main";
 import "./App.css";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import BookSearch from "./components/BookSearch";
 
 const styles = {
     wrapper : {
@@ -35,6 +36,7 @@ function App() {
                         <Route path="/category/:category" element={<BookList />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<Signup />} />
+                        <Route path="/booksearch" element={<BookSearch />} />
                     </Routes>
                 </div>
             </div>
