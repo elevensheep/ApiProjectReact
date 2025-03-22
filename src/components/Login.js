@@ -47,7 +47,7 @@ const Login = () => {
       console.log("로그인 성공! JWT:", response.data.token);
       alert("로그인 성공!");
       navigate("/");
-  
+      window.location.href = "/";
     } catch (error) {
       console.error("서버 요청 오류:", error);
   

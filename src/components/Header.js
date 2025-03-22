@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Search, Bookmark, LogIn } from "lucide-react";
+import { Search } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import "./components.css";
 import axios from "axios";
@@ -14,28 +14,34 @@ const styles = {
     alignItems: "center",
     width: "100%",
   },
+  btn: {
+    background: "none",
+    border: "none",
+    padding: 0,
+    margin: 0,
+    color: "inherit",
+    font: "inherit",
+    cursor: "pointer",
+  }
 };
 
 function Header() {
   const [search, setSearch] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  // 🔍 로그인 상태 확인
+  // ✅ 로그인 상태 확인
   useEffect(() => {
-    const checkLogin = async () => {
-      try {
-        await axios.post("http://localhost:8080/api/books", {
-          withCredentials: true, // JWT 쿠키 포함
-        });
-        setIsLoggedIn(true);
-      } catch (error) {
-        setIsLoggedIn(false);
-      }
-    };
-
-    checkLogin();
+    axios.post("http://localhost:8080/api/user/status", null, {
+      withCredentials: true,
+    })
+    .then((res) => {
+      setIsLoggedIn(true);
+      console.log("✅ 로그인 사용자:", res.data.userUuid);
+    })
+    .catch(() => {
+      setIsLoggedIn(false);
+    });
   }, []);
 
   // 🔓 로그아웃 처리
@@ -54,26 +60,22 @@ function Header() {
       }
     };
 
-    logout(); 
+    logout();
   };
 
-  // 검색 실행 함수 (Enter 및 아이콘 클릭 시 실행)
+  // 🔍 검색 실행
   const executeSearch = () => {
     if (search.trim()) {
-      console.log(search);
       navigate(`/booksearch?search=${search}`);
     }
   };
 
-  // Enter 키 입력 시 검색 실행
   const handleSearch = (e) => {
-    if (e.key === "Enter" && search.trim()) {
+    if (e.key === "Enter") {
       executeSearch();
-      navigate(`/booksearch?search=${search}`);
     }
   };
 
-  // 아이콘 클릭 시 검색 실행
   const handleIconClick = () => {
     executeSearch();
   };
@@ -108,16 +110,15 @@ function Header() {
             placeholder="검색..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            onKeyDown={handleSearch} // Enter 키 입력 시 검색
+            onKeyDown={handleSearch}
             className="search-input"
           />
-          <Search className="search-icon" size={18} onClick={handleIconClick} />{" "}
-          {/* 🔥 아이콘 클릭 시 검색 실행 */}
+          <Search className="search-icon" size={18} onClick={handleIconClick} />
         </div>
         <div className="nav-links">
           {isLoggedIn ? (
-            <button onClick={handleLogout} className="nav-link">
-              로그아웃
+            <button onClick={handleLogout} className="nav-link" style={styles.btn}>
+              <p>로그아웃</p>
             </button>
           ) : (
             <Link to="/login" className="nav-link">
