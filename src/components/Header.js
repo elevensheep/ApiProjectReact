@@ -67,8 +67,9 @@ function Header() {
 
   // Enter 키 입력 시 검색 실행
   const handleSearch = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && search.trim()) {
       executeSearch();
+      navigate(`/booksearch?search=${search}`);
     }
   };
 
@@ -84,13 +85,13 @@ function Header() {
       </h1>
       <ul className="nav-menu">
         <li className="nav-item">
-          <Link to="/category/politics">경제</Link>
+          <Link to="/category/economic">경제</Link>
         </li>
         <li className="nav-item">
-          <Link to="/category/sports">정치</Link>
+          <Link to="/category/politics">정치</Link>
         </li>
         <li className="nav-item">
-          <Link to="/category/economic">스포츠</Link>
+          <Link to="/category/sports">스포츠</Link>
         </li>
         <li className="nav-item">
           <Link to="/category/society">사회</Link>

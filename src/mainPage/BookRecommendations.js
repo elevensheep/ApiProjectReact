@@ -1,54 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import ReactPaginate from "react-paginate"; // ✅ 페이지네이션 컴포넌트
-import "../components/BookList.css"; // 부모 디렉터리에서 불러올 경우
+import ReactPaginate from "react-paginate";
 import Book from "../components/Book";
+import usePaginatedBooks from "../hooks/usePaginatedBooks";
+import "../components/BookList.css";
 
 function BookList() {
-  const [books, setBooks] = useState([]);
-  const [pageInfo, setPageInfo] = useState({ currentPage: 0, totalPages: 1 }); // ✅
-  const [loading, setLoading] = useState(true);
-  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const [selectedBook, setSelectedBook] = useState(null);
 
-  const fetchBooks = async (page = 0) => {
-    try {
-      const response = await axios.get(
-        `http://localhost:8080/api/books?page=${page}`, // ✅ 페이지 쿼리 포함
-        { withCredentials: true }
-      );
-      setBooks(response.data.content);
-      setPageInfo({
-        currentPage: response.data.currentPage,
-        totalPages: response.data.totalPages,
-      });
-      console.log("BookList: ", response.data);
-    } catch (error) {
-      if (error.response?.status === 404) {
-        setErrorMessage("📭 오늘의 추천 도서가 없습니다.");
-      } else {
-        console.error("❌ 도서 데이터 불러오기 실패:", error);
-        setErrorMessage(
-          "🚨 서버 오류가 발생했습니다. 잠시 후 다시 시도해 주세요."
-        );
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
+  // usePaginatedBooks 훅을 사용하여 API 호출 및 페이징 처리
+  const { books, loading, errorMessage, currentPage, totalPages, setCurrentPage } =
+    usePaginatedBooks({
+      endpoint: "http://localhost:8080/api/books",
+      params: {}, // 추가 파라미터가 필요하면 여기에 작성
+      enabled: true,
+    });
 
-  useEffect(() => {
-    fetchBooks(0); // 초기 로딩 시 0페이지
-  }, [navigate]);
-  
+  // 도서 클릭 시 선택 상태 토글
   const handleBookClick = (isbn) => {
     setSelectedBook(selectedBook === isbn ? null : isbn);
   };
-  
+
+  // 페이지 클릭 시 현재 페이지 상태 업데이트 (훅 내부 useEffect에서 API 호출됨)
   const handlePageClick = (data) => {
-    fetchBooks(data.selected); // 선택한 페이지로 이동
+    console.log("페이지 선택:", data.selected);
+    setCurrentPage(data.selected);
   };
 
   if (loading) return <p>⏳ 불러오는 중...</p>;
@@ -69,19 +46,14 @@ function BookList() {
                 onClick={() => handleBookClick(book.bookIsbn)}
               />
             ))}
-            {/* {books.map((book) => (
-              <li key={book.bookIsbn}>
-                {book.bookTitle} - {book.bookAuthor}
-              </li>
-            ))} */}
           </ul>
 
           <ReactPaginate
             previousLabel={"< 이전"}
             nextLabel={"다음 >"}
             breakLabel={"..."}
-            pageCount={pageInfo.totalPages}
-            forcePage={pageInfo.currentPage}
+            pageCount={totalPages}
+            forcePage={currentPage}
             marginPagesDisplayed={2}
             pageRangeDisplayed={5}
             onPageChange={handlePageClick}
@@ -95,3 +67,4 @@ function BookList() {
 }
 
 export default BookList;
+
