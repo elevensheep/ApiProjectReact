@@ -2,6 +2,11 @@ import React from "react";
 import "./Book.css";
 
 const Book = ({ title, author, publisher, image, description, expanded, onClick }) => {
+
+
+    // 카테고리별 추천 도서 요청
+    
+
     return (
         <div className={`book ${expanded ? "expanded" : ""}`} onClick={onClick}>
             {/* 🔥 기본 상태에서는 기존처럼 표시 */}
