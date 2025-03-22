@@ -47,7 +47,7 @@ const styles = {
 // 더미 데이터 (배너에 표시할 도서들)
 const books = [
     {
-        title: (<>소년이로 <br />(편혜영 소설집)</>),
+        title: "소년이온다다 <br />(편혜영 소설집)",
         img: "https://shopping-phinf.pstatic.net/main_3243615/32436154262.20221019142158.jpg",
         styles: { backgroundColor: "#222" },
         isbn : "9788932035338"

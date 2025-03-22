@@ -4,6 +4,8 @@ import Header from "./components/Header";
 import BookList from "./components/BookList";
 import Main from "./mainPage/Main";
 import "./App.css";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 
 const styles = {
     wrapper : {
@@ -25,11 +27,14 @@ function App() {
     return (
         <Router>
             <div className="app">
+
                 <div style={styles.wrapper} className="container">
                     <Header />
                     <Routes>
                         <Route path="/" element={<Main />} />
                         <Route path="/category/:category" element={<BookList />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/signup" element={<Signup />} />
                     </Routes>
                 </div>
             </div>

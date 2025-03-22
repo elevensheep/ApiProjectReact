@@ -1,4 +1,8 @@
 /* 공통 스타일 */
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: white;
@@ -208,3 +212,109 @@ footer {
     align-items: center;
     flex-direction: column;
 }
+
+/* 로그인 회원가입 */
+
+.login-page-wrapper, .signup-page-wrapper {
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+    flex-direction: column;
+    align-items: center;     /* 수직 중앙 정렬 */
+    height: calc(100vh - 180.2px); /* 전체 화면 높이에서 헤더, footer 높이 뺌 */
+    background-color: #f9f9f9; /* 선택 사항: 배경 색 */
+  }
+
+  .login-title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  .sign-input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  .sign-input:focus {
+    border-color: #b395d6;
+    outline: none;
+  }
+  
+  button {
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 12px;
+    width: 100%;
+  }
+  
+ 
+ /* 로그인 페이지 */
+ .login-container,
+ .signup-container {
+   background-color: #fff;
+   padding: 30px;
+   border-radius: 8px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   width: 100%;
+   max-width: 400px;
+ }
+ 
+ .login-btn,
+ .signup-btn {
+   background-color: #b395d6;
+   color: white;
+   border: none;
+ }
+ 
+ .login-btn:hover,
+ .signup-btn:hover {
+   background-color: #9f7fcb;
+ }
+ 
+ /* 회원가입 페이지에만 필요한 스타일 */
+ .error-message {
+   color: red;
+   font-size: 14px;
+   margin-bottom: 10px;
+ }
+ 
+ /* 추가적인 스타일 - 아이콘과 비밀번호 표시/숨기기 */
+ .password-wrapper {
+   position: relative;
+ }
+ 
+ .password-eye-icon {
+   position: absolute;
+   right: 10px;
+   top: 55%;
+   transform: translateY(-50%);
+   cursor: pointer;
+ }
+ 
+ /* 페이지 별 구분을 위한 클래스 */
+ .login-container h2 {
+   color: #333;
+ }
+ 
+ .signup-container h2 {
+   color: #333;
+ }
+ 
+ .sign-link {
+    padding-top: 10px;
+ }
+
+  
