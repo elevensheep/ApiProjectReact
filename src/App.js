@@ -27,24 +27,16 @@ function App() {
     return (
         <Router>
             <div className="app">
-<<<<<<< HEAD
-                <Header />
-                <Banner /> {/* 🔥 배너 추가 (항상 보이도록) */}
-                <Routes>
-                    <Route path="/" element={<Main />} />
-                    <Route path="/category/:category" element={<BookList />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/signup" element={<Signup />} />
-                </Routes>
-=======
+
                 <div style={styles.wrapper} className="container">
                     <Header />
                     <Routes>
                         <Route path="/" element={<Main />} />
                         <Route path="/category/:category" element={<BookList />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/signup" element={<Signup />} />
                     </Routes>
                 </div>
->>>>>>> upstream/master
             </div>
         </Router>
     );
