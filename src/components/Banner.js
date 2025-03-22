@@ -13,7 +13,7 @@ const styles = {
   },
 
   container: {
-    width: "30%",
+    width: "100%",
     height: "80%",
     display: "flex",
     justifyContent: "center",
@@ -25,7 +25,10 @@ const styles = {
   bannerInfo: {
     marginBottom: "16px",
     alignItems: "center",
-    justifyContent: "space-between"
+    justifyContent: "center",   // ⬅️ 중앙 정렬 추가
+    display: "flex",            // ⬅️ flex 레이아웃 적용
+    flexDirection: "column",    // ⬅️ 텍스트와 버튼이 세로로 나열되도록
+    textAlign: "center"  
   },
 
   img: {
@@ -40,14 +43,15 @@ const styles = {
     backgroundColor: "transparent",
     color: "white",
     border: "none",
-    cursor: "pointer"
+    cursor: "pointer",
+    width : "10px"
   }
 };
 
 // 더미 데이터 (배너에 표시할 도서들)
 const books = [
     {
-        title: "소년이온다다 <br />(편혜영 소설집)",
+        title: "소년이로 <br />(편혜영 소설집)",
         img: "https://shopping-phinf.pstatic.net/main_3243615/32436154262.20221019142158.jpg",
         styles: { backgroundColor: "#222" },
         isbn : "9788932035338"
@@ -76,7 +80,7 @@ function Banner() {
         <button onClick={prev} style={styles.navBtn}>{"<"}</button>
         <div style={styles.container}>
             <div style={styles.bannerInfo}>
-                <h2>{current.title}</h2>
+            <h2 dangerouslySetInnerHTML={{ __html: current.title }} />
                 <Link to={`/book/${current.isbn}`} style={{ color: "skyblue" }}>책 보러가기</Link>
             </div>
             <img src={current.img} alt={current.title} style={styles.img} />
