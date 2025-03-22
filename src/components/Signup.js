@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import axios from "axios";
-// import './main.css';
+import './components.css';
 import Swal from 'sweetalert2';
-import Header from "./Header";
 
 const Signup = () => {
     const [userUuid, setUserUuid] = useState("");
@@ -20,53 +19,59 @@ const Signup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+      
+        // 입력값 검증
         if (!userUuid || !userNickname || !userPassword || !confirmPassword) {
-            setErrorMessage("모든 필드를 채워주세요.");
-        } else if (userPassword !== confirmPassword) {
-            setPasswordMatchError("비밀번호가 일치하지 않습니다.");
-        } else {
-            try {
-                const response = await fetch("http://localhost:8080/signup", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        userUuid: userUuid,
-                        userNickname: userNickname,
-                        userPassword: userPassword
-                    })
-                });
-            
-                if (!response.ok) {
-                    throw new Error("서버 응답 실패");
-                }
-            
-                const data = await response.json();
-                console.log("회원가입 성공: ", data);
-            
-                Swal.fire({
-                    icon: "success",
-                    title: "회원가입 성공!",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            } catch (error) {
-                console.error("회원가입 실패:", error);
-            
-                Swal.fire({
-                    icon: "error",
-                    title: "회원가입 실패",
-                    text: error.message
-                });
-            }
-            
+          setErrorMessage("모든 필드를 채워주세요.");
+          return;
         }
-    };
+      
+        if (userPassword !== confirmPassword) {
+          setPasswordMatchError("비밀번호가 일치하지 않습니다.");
+          return;
+        }
+      
+        try {
+          const response = await axios.post("http://localhost:8080/signup", {
+            userUuid,
+            userNickname,
+            userPassword,
+          });
+      
+          console.log("회원가입 성공:", response.data);
+      
+          Swal.fire({
+            icon: "success",
+            title: "회원가입 성공!",
+            showConfirmButton: false,
+            timer: 1500
+          });
+      
+          navigate("/login");
+      
+        } catch (error) {
+          console.error("회원가입 실패:", error);
+      
+          let errorMsg = "회원가입에 실패했습니다.";
+      
+          if (error.response?.status === 409) {
+            errorMsg = "이미 사용 중인 아이디 또는 닉네임입니다.";
+          } else if (error.response?.data?.message) {
+            errorMsg = error.response.data.message;
+          }
+      
+          Swal.fire({
+            icon: "error",
+            title: "회원가입 실패",
+            text: errorMsg,
+          });
+        }
+      };
+      
+
 
     return (
-        <>
-            <Header />
+        <div className="signup-page-wrapper">
             <div className="signup-container">
                 <h2>회원가입</h2>
                 {errorMessage && <p className="error-message">{errorMessage}</p>}
@@ -75,6 +80,7 @@ const Signup = () => {
                     <div className="input-group">
                         <label htmlFor="userUuid">아이디</label>
                         <input
+                        className="sign-input"
                             type="text"
                             id="userUuid"
                             value={userUuid}
@@ -85,6 +91,7 @@ const Signup = () => {
                     <div className="input-group">
                         <label htmlFor="userNickname">닉네임</label>
                         <input
+                        className="sign-input"
                             type="text"
                             id="userNickname"
                             value={userNickname}
@@ -96,6 +103,7 @@ const Signup = () => {
                         <label htmlFor="userPassword">비밀번호</label>
                         <div className="password-wrapper">
                             <input
+                            className="sign-input"
                                 type={showPassword ? "text" : "password"}
                                 id="userPassword"
                                 value={userPassword}
@@ -111,6 +119,7 @@ const Signup = () => {
                         <label htmlFor="confirmPassword">비밀번호 확인</label>
                         <div className="password-wrapper">
                             <input
+                            className="sign-input"
                                 type={showConfirmPassword ? "text" : "password"}
                                 id="confirmPassword"
                                 value={confirmPassword}
@@ -126,11 +135,11 @@ const Signup = () => {
                         회원가입
                     </button>
                 </form>
-                <div className="signup-link">
+                <div className="sign-link">
                     <p>아이디가 있으신가요? <Link to="/login">로그인</Link></p>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
