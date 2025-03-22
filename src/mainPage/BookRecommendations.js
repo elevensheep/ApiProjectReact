@@ -3,26 +3,63 @@ import { useNavigate } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import Book from "../components/Book";
 import usePaginatedBooks from "../hooks/usePaginatedBooks";
-import "../components/BookList.css";
 
 function BookList() {
   const navigate = useNavigate();
   const [selectedBook, setSelectedBook] = useState(null);
 
-  // usePaginatedBooks 훅을 사용하여 API 호출 및 페이징 처리
-  const { books, loading, errorMessage, currentPage, totalPages, setCurrentPage } =
-    usePaginatedBooks({
-      endpoint: "http://localhost:8080/api/books",
-      params: {}, // 추가 파라미터가 필요하면 여기에 작성
-      enabled: true,
-    });
+  const styles = {
+    wrapper: {
+      overflowY: "hidden",
+      padding: "20px",
+      width: "100%",
+      padding : 0
+    },
+    categorySection: {
+      marginBottom: "32px",
+      padding: "16px",
+      border: "1px solid #ddd",
+      borderRadius: "8px",
+      backgroundColor: "#f9f9f9",
+    },
+    categoryTitle: {
+      marginBottom: "12px",
+      fontSize: "1.25rem",
+      fontWeight: "bold",
+      borderBottom: "1px solid #ccc",
+      paddingBottom: "4px",
+    },
+    horizontalScroll: {
+      display: "flex",
+      overflowX: "auto",
+      gap: "16px",
+      padding: "0px",
+      margin: "0px",
+      listStyle: "none",
+      scrollBehavior: "smooth",
+    },
+    bookItem: {
+      flex: "0 0 auto",
+    },
+  };
 
-  // 도서 클릭 시 선택 상태 토글
+  const {
+    books,
+    loading,
+    errorMessage,
+    currentPage,
+    totalPages,
+    setCurrentPage,
+  } = usePaginatedBooks({
+    endpoint: "http://localhost:8080/api/books",
+    params: {},
+    enabled: true,
+  });
+
   const handleBookClick = (isbn) => {
     setSelectedBook(selectedBook === isbn ? null : isbn);
   };
 
-  // 페이지 클릭 시 현재 페이지 상태 업데이트 (훅 내부 useEffect에서 API 호출됨)
   const handlePageClick = (data) => {
     console.log("페이지 선택:", data.selected);
     setCurrentPage(data.selected);
@@ -30,41 +67,55 @@ function BookList() {
 
   if (loading) return <p>⏳ 불러오는 중...</p>;
 
+  const categories = ["인문과학", "사회과학", "자연과학", "어문학", "미분류"];
+
   return (
-    <div>
+    <div style={styles.wrapper}>
       <h2>📚 도서 목록</h2>
       {errorMessage ? (
         <p className="error-message">{errorMessage}</p>
       ) : (
         <>
-          <ul>
-            {books.map((book) => (
-              <Book
-                key={book.bookIsbn}
-                {...book}
-                expanded={selectedBook === book.bookIsbn}
-                onClick={() => handleBookClick(book.bookIsbn)}
-              />
-            ))}
-          </ul>
+          {categories.map((category) => {
+            const filteredBooks = books.filter(
+              (book) => book.bookCategory === category
+            );
+            if (filteredBooks.length === 0) return null;
 
-          <ReactPaginate
-            previousLabel={"< 이전"}
-            nextLabel={"다음 >"}
-            breakLabel={"..."}
-            pageCount={totalPages}
-            forcePage={currentPage}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={5}
-            onPageChange={handlePageClick}
-            containerClassName={"pagination"}
-            activeClassName={"active"}
-          />
+            return (
+              <div key={category} style={styles.categorySection}>
+                <h3 style={styles.categoryTitle}>📖 {category}</h3>
+                <ul style={styles.horizontalScroll}>
+                  {filteredBooks.map((book) => (
+                    <li key={book.bookIsbn} style={styles.bookItem}>
+                      <Book
+                        {...book}
+                        expanded={selectedBook === book.bookIsbn}
+                        onClick={() => handleBookClick(book.bookIsbn)}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
         </>
       )}
+
+      <ReactPaginate
+        previousLabel={"< 이전"}
+        nextLabel={"다음 >"}
+        breakLabel={"..."}
+        pageCount={totalPages}
+        forcePage={currentPage}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={5}
+        onPageChange={handlePageClick}
+        containerClassName={"pagination"}
+        activeClassName={"active"}
+      />
     </div>
   );
 }
 
 export default BookList;
-
