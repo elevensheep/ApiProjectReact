@@ -3,9 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Book from './components/Book';
-import bookImage from "./components/123.jpg";
-import BookList from './components/BookList';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
