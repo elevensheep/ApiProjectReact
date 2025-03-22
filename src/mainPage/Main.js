@@ -20,7 +20,7 @@ function Main() {
     useEffect(() => {
         const checkAuth = async () => {
           try {
-            const response = await axios.get("http://localhost:8080/", {
+            const response = await axios.get("http://localhost:8080/api/books", {
               withCredentials: true,
             });
     
