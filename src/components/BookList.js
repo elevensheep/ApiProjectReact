@@ -14,11 +14,13 @@ const BookList = () => {
 
   const fetchBooks = async (page = 0) => {
     try {
-      const response = await axios.get(`http://localhost:8080/books/recommend/category/${category}?page=${page}`, {
+      const response = await axios.get(`http://localhost:8080/api/recommend/category/${category}?page=${page}`, {
         withCredentials: true
       });
 
       const data = response.data;
+      console.log("결과 데이터", data);
+
       setBooks(data.content);
       setPageInfo({
         currentPage: data.currentPage,

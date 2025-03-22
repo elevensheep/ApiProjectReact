@@ -85,3 +85,29 @@
 .book.expanded img {
     width: 200px; /* 🔥 기존보다 40% 증가 */
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 20px 0;
+    gap: 8px;
+  }
+  
+  .pagination li {
+    cursor: pointer;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .pagination li.active {
+    background-color: #b395d6;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .pagination li:hover {
+    background-color: #eee;
+  }
+  
