@@ -30,7 +30,7 @@ const Login = () => {
   
     try {
       const response = await axios.post(
-        "http://localhost:8080/login",
+        "http://localhost:8080/api/user/login",
         {
           userUuid,
           userPassword,

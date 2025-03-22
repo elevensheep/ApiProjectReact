@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ReactPaginate from "react-paginate";
+import axios from "axios";
 import Book from "../components/Book";
-import usePaginatedBooks from "../hooks/usePaginatedBooks";
 
 function BookList() {
   const navigate = useNavigate();
   const [selectedBook, setSelectedBook] = useState(null);
+  const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const styles = {
     wrapper: {
       overflowY: "hidden",
-      padding: "20px",
+      padding: 0,
       width: "100%",
-      padding : 0
     },
     categorySection: {
       marginBottom: "32px",
@@ -33,8 +34,8 @@ function BookList() {
       display: "flex",
       overflowX: "auto",
       gap: "16px",
-      padding: "0px",
-      margin: "0px",
+      padding: 0,
+      margin: 0,
       listStyle: "none",
       scrollBehavior: "smooth",
     },
@@ -43,26 +44,24 @@ function BookList() {
     },
   };
 
-  const {
-    books,
-    loading,
-    errorMessage,
-    currentPage,
-    totalPages,
-    setCurrentPage,
-  } = usePaginatedBooks({
-    endpoint: "http://localhost:8080/api/books",
-    params: {},
-    enabled: true,
-  });
+  // ✅ 데이터 불러오기 (axios 직접 사용)
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/api/books")
+      .then((res) => {
+        console.log("📦 API 응답:", res.data);
+        setBooks(res.data); // 응답이 배열이라면 그대로
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("❌ API 오류:", err);
+        setErrorMessage("도서를 불러오는 중 오류가 발생했습니다.");
+        setLoading(false);
+      });
+  }, []);
 
   const handleBookClick = (isbn) => {
     setSelectedBook(selectedBook === isbn ? null : isbn);
-  };
-
-  const handlePageClick = (data) => {
-    console.log("페이지 선택:", data.selected);
-    setCurrentPage(data.selected);
   };
 
   if (loading) return <p>⏳ 불러오는 중...</p>;
@@ -80,6 +79,7 @@ function BookList() {
             const filteredBooks = books.filter(
               (book) => book.bookCategory === category
             );
+
             if (filteredBooks.length === 0) return null;
 
             return (
@@ -101,19 +101,6 @@ function BookList() {
           })}
         </>
       )}
-
-      <ReactPaginate
-        previousLabel={"< 이전"}
-        nextLabel={"다음 >"}
-        breakLabel={"..."}
-        pageCount={totalPages}
-        forcePage={currentPage}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={5}
-        onPageChange={handlePageClick}
-        containerClassName={"pagination"}
-        activeClassName={"active"}
-      />
     </div>
   );
 }

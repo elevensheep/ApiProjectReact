@@ -26,7 +26,7 @@ function Header() {
   useEffect(() => {
     const checkLogin = async () => {
       try {
-        await axios.get("http://localhost:8080/api/books", {
+        await axios.post("http://localhost:8080/api/books", {
           withCredentials: true, // JWT 쿠키 포함
         });
         setIsLoggedIn(true);
@@ -42,7 +42,7 @@ function Header() {
   const handleLogout = () => {
     const logout = async () => {
       try {
-        await axios.get("http://localhost:8080/logout", {
+        await axios.post("http://localhost:8080/api/user/logout", {
           withCredentials: true,
         });
         setIsLoggedIn(false);
