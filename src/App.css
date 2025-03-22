@@ -13,17 +13,6 @@ body {
     font-style: normal;
 }
 
-
-.app {
-  background-color: white;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  caret-color: transparent; /* 🔥 깜빡이는 커서 숨기기 */
-  
-}
-
-
 .content {
   flex: 1;
   max-width: 800px;
@@ -52,15 +41,6 @@ body {
   color: #ff6347;
 }
 
-
-.app {
-  background-color: white;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 /* 📌 반응형 적용 */
 @media (max-width: 1024px) {
   .app {
@@ -68,9 +48,9 @@ body {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .app {
-      width: 100%;
+      width: 95%;
   }
 }
 
@@ -80,49 +60,6 @@ body {
   max-width: 1200px;
   margin: auto;
   padding: 16px;
-}
-
-/* 📌 네비게이션 바 스타일 */
-.header {
-  width: 100%;
-  max-width: 1200px;
-  padding: 10px 20px;
-  background-color: white;
-}
-
-/* 📌 반응형 네비게이션 조정 */
-@media (max-width: 768px) {
-  .header {
-      flex-direction: column;
-      align-items: center;
-  }
-}
-
-/* 📌 배너 스타일 */
-.banner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 65%;
-  max-width: 1100px;
-  height: 200px;
-  background-color: black;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-/* 📌 반응형 배너 */
-@media (max-width: 768px) {
-  .banner {
-      height: 150px;
-  }
-}
-
-@media (max-width: 480px) {
-  .banner {
-      height: 120px;
-      font-size: 14px;
-  }
 }
 
 /* 📌 NavLink 스타일 */
@@ -138,4 +75,27 @@ body {
 
 .header-link:hover, .nav-link:hover {
   color: #ff6347;
+}
+
+/* 📌 반응형 네비게이션 조정 */
+@media (max-width: 768px) {
+  .header {
+      flex-direction: column;
+      align-items: center;
+      width: 80%;
+  }
+}
+
+/* 📌 반응형 배너 */
+@media (max-width: 768px) {
+  .banner {
+      height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner {
+      height: 120px;
+      font-size: 14px;
+  }
 }

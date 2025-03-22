@@ -10,16 +10,6 @@ body {
 h2 {
     font-weight: normal;
 }
-/* 헤더 스타일 */
-.header {
-    background-color: white;
-    padding: 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 60%;
-    margin: 0 auto;
-}
 
 /* 네비게이션 바 */
 .nav {
@@ -82,10 +72,6 @@ h2 {
     /* 선택된 페이지 밑줄 */
 }
 
-
-
-
-
 /* h1 내부 Link 스타일 제거 */
 .header h1 a {
     text-decoration: none;
@@ -139,23 +125,6 @@ h2 {
     /* 🔥 색상 조정 */
 }
 
-/* 메인 배너 */
-.banner {
-    background: black;
-    color: white;
-    text-align: center;
-    padding: 120px;
-    position: relative;
-    width: 50%;
-    max-width: 1200px;
-    margin: 0 auto;
-    border-radius: 20px;
-}
-
-.banner img {
-    width: 200px;
-    height: auto;
-}
 
 /* 개별 책 아이템 스타일 */
 .book-container {

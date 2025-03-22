@@ -1,13 +1,88 @@
-import React from "react";
-import "./components.css";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
+const styles = {
+  wrapper: {
+    background: "black",
+    height: "350px",
+    borderRadius: "20px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: "20px"
+  },
+
+  container: {
+    width: "30%",
+    height: "80%",
+    display: "flex",
+    justifyContent: "center",
+    margin: "0 auto",
+    color: "white",
+    gap: "20px"
+  },
+
+  bannerInfo: {
+    marginBottom: "16px",
+    alignItems: "center",
+    justifyContent: "space-between"
+  },
+
+  img: {
+    width: "150px",
+    height: "auto",
+    borderRadius: "8px",
+    objectFit : "contain"
+  },
+
+  navBtn: {
+    fontSize: "24px",
+    backgroundColor: "transparent",
+    color: "white",
+    border: "none",
+    cursor: "pointer"
+  }
+};
+
+// 더미 데이터 (배너에 표시할 도서들)
+const books = [
+    {
+        title: (<>소년이로 <br />(편혜영 소설집)</>),
+        img: "https://shopping-phinf.pstatic.net/main_3243615/32436154262.20221019142158.jpg",
+        styles: { backgroundColor: "#222" },
+        isbn : "9788932035338"
+    },
+    {
+        title: "82년생 김지영",
+        img: "https://via.placeholder.com/200x300.png?text=82년생+김지영",
+        styles: { backgroundColor: "#333" }
+    },
+    {
+        title: "작별하지 않는다",
+        img: "https://via.placeholder.com/200x300.png?text=작별하지+않는다",
+        styles: { backgroundColor: "#444" }
+    }
+];
 
 function Banner() {
+    const [index, setIndex] = useState(0);
+    const current = books[index];
+
+    const prev = () => setIndex((index - 1 + books.length) % books.length);
+    const next = () => setIndex((index + 1) % books.length);
+
     return (
-        <div className="banner">
-            <img src="placeholder.jpg" alt="배너 이미지" />
-            <h2>여기다가 뭘 넣어야 할까요</h2>
-            <button>책 보러가기</button>
+    <div style={{ ...styles.wrapper, ...current.styles }}>
+        <button onClick={prev} style={styles.navBtn}>{"<"}</button>
+        <div style={styles.container}>
+            <div style={styles.bannerInfo}>
+                <h2>{current.title}</h2>
+                <Link to={`/book/${current.isbn}`} style={{ color: "skyblue" }}>책 보러가기</Link>
+            </div>
+            <img src={current.img} alt={current.title} style={styles.img} />
         </div>
+        <button onClick={next} style={styles.navBtn}>{">"}</button>
+    </div>
     );
 }
 
