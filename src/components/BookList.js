@@ -77,3 +77,83 @@ const BookList = () => {
 };
 
 export default BookList;
+
+
+// import React, { useState } from "react";
+// import { useParams } from "react-router-dom";
+// import Book from "./Book";
+// import images from "./123.jpg";
+// import "./BookList.css";
+// import images1 from "./1234.jpeg";
+
+// const initialBooks = [
+//     { title: "정치11111111111111111란 무엇인가", author: "김정치", publisher: "사회출판사", image: images1, description: "정치의 기본 개념", isbn: "978-89-1234-222-1", category: "정치" },
+//     { title: "현대 정치 분석", author: "박현대", publisher: "정치학 출판사", image: images, description: "현대 정치 구조", isbn: "978-89-1234-222-2", category: "정치" },
+//     { title: "국제 정치 개론", author: "이국제", publisher: "국제관계 출판사", image: images, description: "국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념국제 정치 개념", isbn: "978-89-1234-222-3", category: "정치" },
+//     { title: "한국 정치의 역사", author: "정한국", publisher: "사회출판사", image: images, description: "한국 정치 변천사", isbn: "978-89-1234-222-4", category: "정치" },
+//     { title: "대통령과 권력", author: "권력자", publisher: "정치학 출판사", image: images, description: "대통령제의 구조", isbn: "978-89-1234-222-5", category: "정치" },
+//     { title: "정치의 기111111111111111111111111술", author: "박기술", publisher: "국제관계 출판사", image: images, description: "정치 협상과 전략", isbn: "978-89-1234-222-6", category: "정치" },
+// ];
+
+// const BookList = () => {
+//     const { category } = useParams();
+//     const [selectedBook, setSelectedBook] = useState(null);
+
+//     const filteredBooks = category
+//         ? initialBooks.filter((book) => book.category === category)
+//         : initialBooks;
+
+//     const handleBookClick = (isbn) => {
+//         setSelectedBook(selectedBook === isbn ? null : isbn);
+//     };
+
+//     // 📌 최소 2줄(=8칸) 보장용 더미 아이템 추가
+//     const ensureTwoRows = (books) => {
+//         const result = [...books];
+//         const needed = Math.max(0, 8 - books.length); // 4개 * 2줄
+//         for (let i = 0; i < needed; i++) {
+//             result.push({ isbn: `dummy-${i}`, isDummy: true });
+//         }
+//         return result;
+//     };
+
+//     const visibleBooks = ensureTwoRows(filteredBooks);
+
+//     const [bookmarks, setBookmarks] = useState([]); // isbn 목록
+
+//     const handleBookmarkToggle = (book) => {
+//         if (bookmarks.includes(book.isbn)) {
+//             // 북마크 제거
+//             setBookmarks(bookmarks.filter((id) => id !== book.isbn));
+//             // 🔥 DB 삭제 요청
+//         } else {
+//             // 북마크 추가
+//             setBookmarks([...bookmarks, book.isbn]);
+//             // 🔥 DB 저장 요청
+//         }
+//     };
+
+//     return (
+//         <div className="book-list">
+//             <h2>{category ? `${category} 관련 도서` : "📚 전체 추천 도서"}</h2>
+//             <div className="book-grid">
+//                 {visibleBooks.map((book, index) =>
+//                     book.isDummy ? (
+//                         <div key={book.isbn} className="book dummy" />
+//                     ) : (
+//                         <Book
+//                             key={book.isbn}
+//                             {...book}
+//                             expanded={selectedBook === book.isbn}
+//                             onClick={() => handleBookClick(book.isbn)}
+//                             isBookmarked={bookmarks.includes(book.isbn)}         // ✅ 상태 전달
+//                             onBookmarkToggle={() => handleBookmarkToggle(book)}  // ✅ 클릭 시 동작
+//                         />
+//                     )
+//                 )}
+//             </div>
+//         </div>
+//     );
+// };
+
+// export default BookList;

@@ -7,21 +7,18 @@
     border: 1px solid #ddd;
     padding: 8px;
     cursor: pointer;
-    width: 100%;
-    max-width: 230px;
-    height: 250px; /* 🔥 기본 높이를 250px로 고정 */
+    width: 230px;
+    height: 268px;
     background: white;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     border-radius: 8px;
     overflow: hidden;
     min-height: 0px;
+    position: relative;
 }
+
 /* 호버 효과 */
-.book:hover {
-    transform: scale(1.05);
-    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.15);
-}
 
 
 /* 📌 기본적으로 `.book-info` 숨기기 */
@@ -30,6 +27,16 @@
 }
 
 
+.book-image-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.book-image-wrapper img {
+    width: 100px;
+    height: auto;
+}
 
 /* 📌 이미지 + 제목을 묶는 `.book-content` */
 .book-content {
@@ -40,36 +47,45 @@
 }
 
 .book img {
-    width: 120px; /* 🔥 기본 크기 줄이기 */
-    height: auto;
+    width: 120px;
+    /* 🔥 기본 크기 줄이기 */
+    height: 190px;
     border-radius: 6px;
     padding-top: 20px;
 }
 
 /* 제목 크기 조정 */
 .book-title {
-    margin-top: 3px;
-    font-size: 18px; /* 🔥 기본 크기 줄이기 */
-    font-weight: bold;
     text-align: center;
+    width: 100%;
+    /* 부모(.book-content)의 가로폭을 기준으로 정렬됨 */
+    padding: 0 8px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    float: left;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 
-/* 📌 확장되지 않은 기본 상태의 높이 */
-.book:not(.expanded) {
-    height: 250px; /* 🔥 기본 높이 유지 */
+.book-description {
+    max-height: 140px;
+    overflow-y: auto;
+    padding-right: 8px;
+    font-size: 16px;
+    margin-top: 10px;
 }
+
+
 
 /* 📌 확장된 상태 */
 .book.expanded {
     height: 400px;
     display: grid;
-    grid-template-columns: 1fr 1fr; /* 2열 */
-    grid-template-rows: auto auto; /* 2행 */
+    grid-template-columns: 1fr 1fr;
+    /* 2열 */
+    grid-template-rows: auto auto;
+    /* 2행 */
     gap: 10px;
     padding: 20px;
     align-items: start;
@@ -82,7 +98,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    grid-column: 1; /* 왼쪽 상단 */
+    grid-column: 1;
+    /* 왼쪽 상단 */
     grid-row: 1;
 
 }
@@ -92,23 +109,28 @@
     width: 40px;
     display: flex;
     flex-direction: column;
-    grid-column: 2; /* 🔥 오른쪽 상단 */
+    grid-column: 2;
+    /* 🔥 오른쪽 상단 */
     grid-row: 1;
-    justify-content: flex-start; /* 🔥 상단 정렬 */
-    align-items: flex-start; /* 🔥 내부 내용 왼쪽 정렬 */
-    align-self: start; /* 🔥 상단에서 배치 */
+    justify-content: flex-start;
+    /* 🔥 상단 정렬 */
+    align-items: flex-start;
+    /* 🔥 내부 내용 왼쪽 정렬 */
+    align-self: start;
+    /* 🔥 상단에서 배치 */
     padding-left: 10px;
-    margin-top: 30px;
+    height: 100%;
 }
 
 /* 📌 확장된 책에서 설명 위치 */
 .book.expanded .description {
-    grid-column: span 2; /* 전체 차지 */
-    grid-row: 2; /* 아래 */
+    grid-column: span 2;
+    /* 전체 차지 */
+    grid-row: 2;
+    /* 아래 */
     margin-top: 10px;
     font-size: 14px;
-    
-    
+
 }
 
 /* 📌 확장된 상태에서 이미지 크기 키우기 */
@@ -121,17 +143,38 @@
 .book.expanded .book-title {
     font-size: 20px;
     text-align: left;
+    padding: 0px;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    word-break: break-word;
 }
 
 .book-details {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr; /* 왼쪽: 이미지, 오른쪽: 책 정보 */
+    grid-template-columns: 1fr 1fr;
+    /* 왼쪽: 이미지, 오른쪽: 책 정보 */
     gap: 10px;
     align-items: start;
-    margin-top: -100px;
+    transform: translateY(0px);
+
 }
 
 .book-description {
     margin-left: 20px;
+}
+
+.book .bookmark-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.2s;
+
+}
+
+.book .bookmark-icon:hover {
+    transform: scale(1.2);
 }
