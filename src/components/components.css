@@ -183,13 +183,6 @@ h2 {
     overflow: hidden;
 }
 
-.book-title {
-    font-size: 22px;
-    
-    font-weight: normal;
-    margin: 0;
-}
-
 .book-author,
 .book-publisher,
 .book-description,
@@ -316,5 +309,4 @@ footer {
  .sign-link {
     padding-top: 10px;
  }
-
   
