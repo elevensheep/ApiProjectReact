@@ -95,6 +95,7 @@ export default BookList;
 //     { title: "정치의 기111111111111111111111111술", author: "박기술", publisher: "국제관계 출판사", image: images, description: "정치 협상과 전략", isbn: "978-89-1234-222-6", category: "정치" },
 // ];
 
+
 // const BookList = () => {
 //     const { category } = useParams();
 //     const [selectedBook, setSelectedBook] = useState(null);

@@ -18,6 +18,7 @@
     grid-auto-flow: dense; /* 📌 자동으로 빈 공간 채우기 */
 }
 
+
 /* 📌 기본 책 스타일 */
 .book {
     transition: all 0.3s ease-in-out;
