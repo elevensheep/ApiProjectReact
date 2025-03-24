@@ -11,11 +11,13 @@
 /* 📌 그리드 설정 */
 .book-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 기본 4개씩 배치 */
+    grid-template-columns: repeat(4, 1fr);
+    /* 기본 4개씩 배치 */
     gap: 15px;
     width: 100%;
     justify-content: center;
-    grid-auto-flow: dense; /* 📌 자동으로 빈 공간 채우기 */
+    grid-auto-flow: dense;
+    /* 📌 자동으로 빈 공간 채우기 */
 }
 
 .book {
@@ -40,11 +42,14 @@
 
 /* 📌 클릭 시 2x2 크기로 정사각형 확장 */
 .book.expanded {
-    grid-column: span 2; /* 가로 2칸 */
-    grid-row: span 2; /* 세로 2칸 */
+    grid-column: span 2;
+    /* 가로 2칸 */
+    grid-row: span 2;
+    /* 세로 2칸 */
     width: 100%;
     height: 100%;
-    min-width: 520px; /* 🔥 확장된 크기 */
+    min-width: 520px;
+    /* 🔥 확장된 크기 */
     max-height: 563px;
     display: flex !important;
     opacity: 1 !important;
@@ -74,7 +79,8 @@
 
 
 .book.expanded img {
-    width: 200px; /* 🔥 기존보다 40% 증가 */
+    width: 200px;
+    /* 🔥 기존보다 40% 증가 */
 }
 
 .pagination {
@@ -83,22 +89,21 @@
     list-style: none;
     padding: 20px 0;
     gap: 8px;
-  }
-  
-  .pagination li {
+}
+
+.pagination li {
     cursor: pointer;
     padding: 8px 12px;
     border: 1px solid #ddd;
     border-radius: 5px;
-  }
-  
-  .pagination li.active {
+}
+
+.pagination li.active {
     background-color: #b395d6;
     color: white;
     font-weight: bold;
-  }
-  
-  .pagination li:hover {
+}
+
+.pagination li:hover {
     background-color: #eee;
-  }
-  
+}

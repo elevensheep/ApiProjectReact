@@ -16,49 +16,23 @@
     overflow: hidden;
     min-height: 0px;
     position: relative;
+    min-width: 230px;
 }
 
-/* 호버 효과 */
-
-
-/* 📌 기본적으로 `.book-info` 숨기기 */
 .book-info {
     display: none;
 }
 
-
-.book-image-wrapper {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
-.book-image-wrapper img {
-    width: 100px;
-    height: auto;
-}
-
-/* 📌 이미지 + 제목을 묶는 `.book-content` */
-.book-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
 .book img {
     width: 120px;
-    /* 🔥 기본 크기 줄이기 */
     height: 190px;
     border-radius: 6px;
     padding-top: 20px;
 }
 
-/* 제목 크기 조정 */
 .book-title {
     text-align: center;
     width: 100%;
-    /* 부모(.book-content)의 가로폭을 기준으로 정렬됨 */
     padding: 0 8px;
     white-space: nowrap;
     overflow: hidden;
@@ -67,78 +41,54 @@
     font-weight: bold;
 }
 
-
-.book-description {
-    max-height: 140px;
-    overflow-y: auto;
-    padding-right: 8px;
-    font-size: 16px;
-    margin-top: 10px;
+.book-image-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
-
-/* 📌 확장된 상태 */
-.book.expanded {
-    height: 400px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    /* 2열 */
-    grid-template-rows: auto auto;
-    /* 2행 */
-    gap: 10px;
-    padding: 20px;
-    align-items: start;
-    text-align: left;
-}
-
-/* 📌 확장된 책에서 이미지 위치 */
-.book.expanded .book-content {
+.book-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    grid-column: 1;
-    /* 왼쪽 상단 */
-    grid-row: 1;
-
+    justify-content: center;
 }
 
-/* 📌 확장된 책에서 정보 위치 */
-.book.expanded .book-info {
-    width: 40px;
+.book.expanded {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
-    grid-column: 2;
-    /* 🔥 오른쪽 상단 */
-    grid-row: 1;
-    justify-content: flex-start;
-    /* 🔥 상단 정렬 */
+    gap: 20px;
+}
+
+.book.expanded .book-details {
+    display: flex;
+    flex-direction: row;
     align-items: flex-start;
-    /* 🔥 내부 내용 왼쪽 정렬 */
-    align-self: start;
-    /* 🔥 상단에서 배치 */
-    padding-left: 10px;
-    height: 100%;
+    gap: 20px;
+    width: 100%;
 }
 
-/* 📌 확장된 책에서 설명 위치 */
-.book.expanded .description {
-    grid-column: span 2;
-    /* 전체 차지 */
-    grid-row: 2;
-    /* 아래 */
-    margin-top: 10px;
-    font-size: 14px;
-
-}
-
-/* 📌 확장된 상태에서 이미지 크기 키우기 */
 .book.expanded img {
-    width: 150px;
+    width: 200px;
     height: auto;
 }
 
-/* 📌 확장된 상태에서 제목 크기 키우기 */
+.book.expanded .book-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 6px;
+    padding-top: 10px;
+}
+
 .book.expanded .book-title {
     font-size: 20px;
     text-align: left;
@@ -149,36 +99,16 @@
     word-break: break-word;
 }
 
-.book-details {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    /* 왼쪽: 이미지, 오른쪽: 책 정보 */
-    gap: 10px;
-    align-items: start;
-    transform: translateY(0px);
-
-}
-
 .book-description {
-    margin-left: 20px;
+    margin-top: 20px;
+    font-size: 15px;
+    line-height: 1.5;
+    word-break: break-word;
+    white-space: pre-line;
+    padding-left: 4px;
+    width: 100%;
 }
 
-.book .bookmark-icon {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-    z-index: 10;
-    transition: transform 0.2s;
-
-}
-
-.book .bookmark-icon:hover {
-    transform: scale(1.2);
-}
-
-/* 더보기 버튼 */
 .more-button {
     margin-top: 10px;
     background-color: #eee;
@@ -188,13 +118,52 @@
     border-radius: 6px;
     font-size: 14px;
     transition: background 0.2s;
+    align-self: flex-start;
 }
 
 .more-button:hover {
     background-color: #ddd;
 }
 
-/* 팝업 오버레이 */
+.book .bookmark-icon {
+    position: absolute;
+    top: 20px;
+    right: -80px;
+    background: transparent;
+    /* ✅ 배경 제거 */
+    border: none;
+    /* ✅ 테두리 제거 */
+    padding: 0;
+    /* ✅ 여백 제거 */
+    cursor: pointer;
+    z-index: 10;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.book .bookmark-icon svg {
+    color: #000;
+    /* 아이콘 색상 (원하는 색으로 변경 가능) */
+    width: 20px;
+    height: 20px;
+}
+
+.book.expanded .bookmark-icon {
+    top: 20px;
+    right: -190px;
+}
+
+.book .bookmark-icon:hover svg {
+    transform: scale(1.1);
+    transition: transform 0.2s;
+}
+
+.book .bookmark-icon:hover {
+    transform: scale(1.2);
+}
+
 .modal-overlay.fullscreen {
     position: fixed;
     top: 0;
@@ -209,8 +178,6 @@
     z-index: 9999;
 }
 
-/* 팝업 콘텐츠 */
-/* 팝업 콘텐츠 내부 전체 구성 */
 .modal-popup-content {
     display: flex;
     flex-direction: column;
@@ -224,56 +191,68 @@
     word-break: break-word;
 }
 
-/* 닫기 버튼 */
 .modal-popup-close {
     position: absolute;
     top: 16px;
-    right: -290px;
+    right: 16px;
     font-size: 22px;
     font-weight: bold;
     border: none;
     background: none;
     cursor: pointer;
     color: #666;
+    width: 20px;
 }
 
 .modal-popup-close:hover {
     color: #ff4d4d;
 }
 
-/* 상단 이미지 + 정보 */
 .popup-book-content {
     display: flex;
     gap: 20px;
     align-items: flex-start;
+    width: 100%;
 }
 
-/* 이미지 */
 .popup-book-image {
     width: 160px;
     height: auto;
     border-radius: 10px;
 }
 
-/* 이미지 오른쪽 텍스트 영역 */
 .popup-book-info {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     gap: 6px;
+    width: 100%;
+    position: relative;
 }
 
-/* 설명은 하단에 따로 분리 */
 .popup-book-description {
     margin-top: 24px;
     font-size: 15px;
     line-height: 1.5;
     word-break: break-word;
-    white-space: pre-line;  /* ✅ 엔터 (\n) 있으면 줄바꿈 처리 */
+    white-space: pre-line;
+    width: 100%;
 }
 
-/* 위치 정보 팝업 안의 카드 구조 */
+.popup-book-info .bookmark-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.popup-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+    align-items: center;
+}
+
 .location-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -288,6 +267,13 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
     min-height: 70px;
 }
+
+.popup-book-info .bookmark-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
 
 .location-name {
     font-weight: bold;
@@ -306,4 +292,25 @@
 
 .location-link:hover {
     color: #005fa3;
+}
+
+.book-expanded-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 20px;
+    width: 100%;
+    align-items: start;
+}
+
+.book-expanded-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.book-expanded-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
 }
