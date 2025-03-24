@@ -8,7 +8,7 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import BookSearch from "./components/BookSearch";
 import BookListPage from "./components/BookListPage"
-
+import { BookmarkProvider } from "./components/BookmarkContext";
 const styles = {
     wrapper : {
         width : "60%",
@@ -27,22 +27,24 @@ const styles = {
 }
 function App() {
     return (
-        <Router>
-            <div className="app">
-
-                <div style={styles.wrapper} className="container">
-                    <Header />
-                    <Routes>
-                        <Route path="/" element={<Main />} />
-                        <Route path="/category/:category" element={<BookList />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/signup" element={<Signup />} />
-                        <Route path="/booksearch" element={<BookSearch />} />
-                        <Route path="/books" element={<BookListPage />}></Route>
-                    </Routes>
+        <BookmarkProvider>
+            <Router>
+                <div className="app">
+                    <div style={styles.wrapper} className="container">
+                        <Header />
+                        <Routes>
+                            <Route path="/" element={<Main />} />
+                            <Route path="/category/:category" element={<BookList />} />
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/signup" element={<Signup />} />
+                            <Route path="/booksearch" element={<BookSearch />} />
+                            <Route path="/books" element={<BookListPage />}></Route>
+                        </Routes>
+                    </div>
                 </div>
-            </div>
-        </Router>
+            </Router>
+        </BookmarkProvider>
+        
     );
 }
 
