@@ -51,6 +51,7 @@ const Book = ({
                         <p><strong>출판사:</strong> {publisher}</p>
                     </div>
                 </div>
+                
             )}
 
             {/* 설명 */}

@@ -101,6 +101,9 @@ function Header() {
         <li className="nav-item">
           <Link to="/category/world">국제</Link>
         </li>
+        <li className="nav-item">
+          <Link to="/books">도서목록</Link>
+        </li>
       </ul>
 
       <nav className="nav">

@@ -41,6 +41,7 @@ function BookList() {
     },
     bookItem: {
       flex: "0 0 auto",
+      height: "320px"
     },
   };
 
