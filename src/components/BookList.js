@@ -51,7 +51,11 @@ const BookList = () => {
             {books.map((book) => (
               <Book
                 key={book.bookIsbn}
-                {...book}
+                title = {book.bookTitle}
+                author = {book.bookAuthor}
+                publisher={book.bookPublisher}
+                image = {book.bookImg}
+                description={book.bookDescription}
                 expanded={selectedBook === book.bookIsbn}
                 onClick={() => handleBookClick(book.bookIsbn)}
               />
