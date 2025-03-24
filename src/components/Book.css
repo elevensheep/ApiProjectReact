@@ -77,60 +77,29 @@
 }
 
 
-/* 📌 확장된 상태 */
 .book.expanded {
-    height: 400px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    /* 2열 */
-    grid-template-rows: auto auto;
-    /* 2행 */
+    height: 450px;
+    display: flex;
+    flex-direction: "column";
     gap: 10px;
     padding: 20px;
-    align-items: start;
-    text-align: left;
-}
-
-/* 📌 확장된 책에서 이미지 위치 */
-.book.expanded .book-content {
+  }
+  
+  /* 상단 영역: 이미지 (왼쪽) */
+  .book.expanded .book-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start; /* 중앙 -> 좌측 정렬 */
     justify-content: flex-start;
-    grid-column: 1;
-    /* 왼쪽 상단 */
-    grid-row: 1;
-
-}
-
-/* 📌 확장된 책에서 정보 위치 */
-.book.expanded .book-info {
-    width: 40px;
+  }
+  
+.book-info {
     display: flex;
     flex-direction: column;
-    grid-column: 2;
-    /* 🔥 오른쪽 상단 */
-    grid-row: 1;
     justify-content: flex-start;
-    /* 🔥 상단 정렬 */
     align-items: flex-start;
-    /* 🔥 내부 내용 왼쪽 정렬 */
-    align-self: start;
-    /* 🔥 상단에서 배치 */
     padding-left: 10px;
-    height: 100%;
-}
-
-/* 📌 확장된 책에서 설명 위치 */
-.book.expanded .description {
-    grid-column: span 2;
-    /* 전체 차지 */
-    grid-row: 2;
-    /* 아래 */
-    margin-top: 10px;
-    font-size: 14px;
-
-}
+  }
 
 /* 📌 확장된 상태에서 이미지 크기 키우기 */
 .book.expanded img {
@@ -271,7 +240,11 @@
     line-height: 1.5;
     word-break: break-word;
     white-space: pre-line;  /* ✅ 엔터 (\n) 있으면 줄바꿈 처리 */
-}
+    max-height: 200px;       /* 고정 높이 */
+    overflow-y: auto;        /* 일정 길이 초과 시 y축 스크롤 */
+    padding-right: 8px;      /* 스크롤바와 겹치지 않도록 여백 */
+  }
+  
 
 /* 위치 정보 팝업 안의 카드 구조 */
 .location-grid {
@@ -306,4 +279,18 @@
 
 .location-link:hover {
     color: #005fa3;
+}
+
+/* 📍 팝업 내 위치 정보 박스 */
+.popup-location-box {
+    margin-top: 24px;
+    font-size: 15px;
+    line-height: 1.5;
+    word-break: break-word;
+    white-space: pre-line;
+}
+
+  /* 📍 확장 모드 내 위치 정보 간격 조정 */
+.book-description .location-grid {
+    margin-top: 0;
 }
