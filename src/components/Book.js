@@ -1,5 +1,5 @@
-import React from "react";
-import { Bookmark } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import "./Book.css";
 
 const Book = ({
@@ -8,60 +8,111 @@ const Book = ({
     publisher,
     image,
     description,
-    expanded,
     onClick,
-    isBookmarked,        // ✅ 북마크 상태 (외부에서 props로 전달)
-    onBookmarkToggle,    // ✅ 북마크 토글 핸들러 (외부에서 함수 전달)
+    locations = [],
+    isbn,
+    expanded,
 }) => {
-    return (
-        <div className={`book ${expanded ? "expanded" : ""}`} onClick={onClick}>
-            {/* ✅ 북마크 아이콘 (항상 오른쪽 상단) */}
-            <div
-                className="bookmark-icon"
-                onClick={(e) => {
-                    e.stopPropagation(); // 카드 클릭 막기
-                    onBookmarkToggle();
-                }}
-            >
-                {isBookmarked ? (
-                    <Bookmark size={30} color="#f39c12" fill="#f39c12" />
-                ) : (
-                    <Bookmark size={30} color="#aaa" />
-                )}
-            </div>
+    const [showModal, setShowModal] = useState(false);
+    const [showLocationModal, setShowLocationModal] = useState(false);
+    const location = useLocation();
+    const isPopupMode = location.pathname === "/"; // 메인 페이지만 팝업
 
-            {!expanded && (
-                <div className="book-content">
-                    <div className="book-image-wrapper">
-                        <img src={image} alt={title} />
-                    </div>
+    const handleMoreClick = (e) => {
+        e.stopPropagation();
+        setShowModal(true);
+    };
+
+    const handleCloseModal = () => setShowModal(false);
+    const handleOpenLocationModal = () => setShowLocationModal(true);
+    const handleCloseLocationModal = () => setShowLocationModal(false);
+
+    useEffect(() => {
+        if (!isPopupMode && showModal) {
+            setShowModal(false);
+        }
+    }, [isPopupMode, showModal]);
+
+    // 팝업 모드 (메인 페이지)
+    if (isPopupMode) {
+        return (
+            <>
+                <div className="book" onClick={() => setShowModal(true)}>
+                    <img src={image} alt={title} />
                     <h3 className="book-title">{title}</h3>
                 </div>
-            )}
 
-            {/* 🔥 확장 상태 */}
-            {expanded && (
-                <div className="book-details">
-                    <div className="book-content">
-                        <img src={image} alt={title} />
-                    </div>
-                    <div className="book-info">
-                        <h3 className="book-title">{title}</h3>
-                        <p><strong>저자:</strong> {author}</p>
-                        <p><strong>출판사:</strong> {publisher}</p>
-                    </div>
-                </div>
-            )}
+                {showModal && (
+                    <div className="modal-overlay fullscreen" onClick={handleCloseModal}>
+                        <div className="modal-popup-content" onClick={(e) => e.stopPropagation()}>
+                            <button className="modal-popup-close" onClick={handleCloseModal}>×</button>
+                            <div className="popup-book-content">
+                                <img src={image} alt={title} className="popup-book-image" />
+                                <div className="popup-book-info">
+                                    <h3>{title}</h3>
+                                    <p><strong>저자:</strong> {author}</p>
+                                    <p><strong>출판사:</strong> {publisher}</p>
 
-            {/* 설명 */}
-            {expanded && (
-                <div className="book-description">
-                    <p>{description}</p>
-                </div>
-            )}
+                                    {locations.length > 0 && (
+                                        <button className="more-button" onClick={handleOpenLocationModal}>
+                                            위치 정보 더보기 🔍
+                                        </button>
+                                    )}
+                                </div>
+                            </div>
+                            <div className="popup-book-description">
+                                <p>{description}</p>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {showLocationModal && (
+                    <div className="modal-overlay fullscreen" onClick={handleCloseLocationModal}>
+                        <div className="modal-popup-content" onClick={(e) => e.stopPropagation()}>
+                            <button className="modal-popup-close" onClick={handleCloseLocationModal}>×</button>
+                            <h3>📍 위치 및 링크 정보</h3>
+                            <div className="location-grid">
+                                {locations.map((loc, i) => (
+                                    <div className="location-card" key={i}>
+                                        <p className="location-name">{loc.name}</p>
+                                        {loc.url && (
+                                            <a
+                                                href={loc.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="location-link"
+                                            >
+                                                바로가기 🔗
+                                            </a>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </>
+        );
+    }
+
+    // 확장형 모드 (BookList / Bookmark 등)
+    return (
+        <div className={`book ${expanded ? "expanded" : ""}`} onClick={onClick}>
+            <div className="book-content">
+                <img src={image} alt={title} />
+                <h3 className="book-title">{title}</h3>
+            </div>
+            <div className="book-info">
+                <p><strong>저자:</strong> {author}</p>
+                <p><strong>출판사:</strong> {publisher}</p>
+                <button className="more-button" onClick={handleMoreClick}>더보기 🔍</button>
+            </div>
+            <div className="book-description">
+                <p>{description}</p>
+            </div>
         </div>
     );
 };
-
 
 export default Book;
