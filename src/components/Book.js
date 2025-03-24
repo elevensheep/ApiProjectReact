@@ -72,7 +72,7 @@ const Book = ({
       return <p>알라딘 정보를 찾을 수 없습니다.</p>;
     }
     return (
-      <div style={styles.aladdinGrid}>
+      <div style={{ ...styles.aladdinGrid, maxHeight: "200px", overflowY: "auto" }}>
         {locations.map((loc, idx) => (
           <div key={idx} style={styles.aladdinCard}>
             <p>{loc.name}</p>
@@ -84,6 +84,7 @@ const Book = ({
           </div>
         ))}
       </div>
+
     );
   };
 
@@ -157,35 +158,54 @@ const Book = ({
           <h3 className="book-title">{title}</h3>
         </div>
         {showModal && (
-          <div className="modal-overlay fullscreen" onClick={() => handleCloseModal()}>
+          <div className="modal-overlay fullscreen" onClick={handleCloseModal}>
             <div className="modal-popup-content" onClick={(e) => e.stopPropagation()}>
               <button className="modal-popup-close" onClick={handleCloseModal}>
                 ×
               </button>
-              {renderAladdinToggle()}
-              {aladdinMode ? (
-                renderAladdinInfo()
-              ) : (
-                <>
-                  <div className="popup-book-content">
-                    <img src={image} alt={title} className="popup-book-image" />
-                    <div className="popup-book-info">
-                      <h3>{title}</h3>
-                      <p><strong>저자:</strong> {author}</p>
-                      <p><strong>출판사:</strong> {publisher}</p>
-                    </div>
+              {/* 상단 영역: 이미지와 책 정보 (ROW) */}
+              <div style={styles.mainInfoContainer}>
+                <div className="popup-book-content">
+                  <img src={image} alt={title} className="popup-book-image" />
+                  <div className="popup-book-info">
+                    <h3>{title}</h3>
+                    <p>
+                      <strong>저자:</strong> {author}
+                    </p>
+                    <p>
+                      <strong>출판사:</strong> {publisher}
+                    </p>
                   </div>
+                </div>
+              </div>
+              {/* 하단 영역: DESCRIPTION과 토글 버튼 (COLUMN) */}
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "100%",
+                  marginTop: "10px",
+                  gap: "10px"
+                }}
+              >
+                {aladdinMode ? (
+                  renderAladdinInfo()
+                ) : (
                   <div className="popup-book-description">
                     <p>{description}</p>
                   </div>
-                </>
-              )}
+                )}
+                <div style={styles.toggleBtnContainer}>
+                  {renderAladdinToggle()}
+                </div>
+              </div>
             </div>
           </div>
         )}
       </>
     );
   }
+  
 
   // 일반(확장되지 않은) 상태
   if (!expanded) {

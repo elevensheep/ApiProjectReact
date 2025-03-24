@@ -78,45 +78,40 @@
 
 
 .book.expanded {
-    height: 450px;
-    display: flex;
-    flex-direction: "column";
-    gap: 10px;
-    padding: 20px;
-  }
-  
-  /* 상단 영역: 이미지 (왼쪽) */
-  .book.expanded .book-content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* 중앙 -> 좌측 정렬 */
-    justify-content: flex-start;
-  }
-  
-.book-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding-left: 10px;
-  }
 
-/* 📌 확장된 상태에서 이미지 크기 키우기 */
-.book.expanded img {
-    width: 150px;
-    height: auto;
-}
-
-/* 📌 확장된 상태에서 제목 크기 키우기 */
-.book.expanded .book-title {
-    font-size: 20px;
-    text-align: left;
-    padding: 0px;
-    white-space: normal;
-    overflow: visible;
-    text-overflow: unset;
-    word-break: break-word;
-}
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        background: white;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .book.expanded .book-details {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 20px;
+        width: 100%;
+    }
+      .book.expanded .book-content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* 중앙 -> 좌측 정렬 */
+        justify-content: flex-start;
+      }
+      
+    .book-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding-left: 10px;
+      }
 
 .book-details {
     width: 100%;
