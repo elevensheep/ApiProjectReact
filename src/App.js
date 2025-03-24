@@ -7,6 +7,7 @@ import "./App.css";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import BookSearch from "./components/BookSearch";
+import BookListPage from "./components/BookListPage"
 
 const styles = {
     wrapper : {
@@ -37,6 +38,7 @@ function App() {
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<Signup />} />
                         <Route path="/booksearch" element={<BookSearch />} />
+                        <Route path="/books" element={<BookListPage />}></Route>
                     </Routes>
                 </div>
             </div>

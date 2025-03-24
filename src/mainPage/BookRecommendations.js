@@ -48,7 +48,7 @@ function BookList() {
   // ✅ 데이터 불러오기 (axios 직접 사용)
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/books")
+      .get("http://localhost:8080/api/books/recommend")
       .then((res) => {
         console.log("📦 API 응답:", res.data);
         setBooks(res.data); // 응답이 배열이라면 그대로

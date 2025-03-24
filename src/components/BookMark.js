@@ -64,8 +64,12 @@ const Bookmark = () => {
                         <div key={book.isbn} className="book dummy" />
                     ) : (
                         <Book
-                            key={book.isbn}
-                            {...book}
+                            key={book.bookIsbn}
+                            title = {book.bookTitle}
+                            author = {book.bookAuthor}
+                            publisher={book.bookPublisher}
+                            image = {book.bookImg}
+                            description={book.bookDescription}
                             expanded={selectedBook === book.isbn}
                             onClick={() => handleBookClick(book.isbn)}
                             isBookmarked={true} // 북마크된 도서니까 무조건 true
