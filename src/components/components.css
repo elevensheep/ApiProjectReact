@@ -52,7 +52,7 @@ h2 {
 }
 
 .nav-item:hover {
-    color: #388e3c;
+    color: #b395d6;
 }
 
 /* 🔥 기본 링크 스타일 제거 */
@@ -64,13 +64,13 @@ h2 {
 
 /* 🔥 Hover(마우스 올렸을 때) 스타일 */
 .nav-item a:hover {
-    color: #ff6347;
+    color: #b395d6;
     /* 원하는 색상으로 변경 (예: 주황색) */
 }
 
 /* 🔥 선택된 링크 (활성화된 페이지) 스타일 */
 .nav-item a.active {
-    color: #ff6347;
+    color: #b395d6;
     /* 활성화된 상태일 때 색상 변경 */
     text-decoration: underline;
     /* 선택된 페이지 밑줄 */
@@ -94,7 +94,7 @@ h2 {
 
 /* 마우스 올렸을 때 효과 */
 .header h1 a:hover {
-    color: #ff6347;
+    color: #b395d6;
     /* 원하는 색상으로 변경 (예: 오렌지색) */
 }
 
