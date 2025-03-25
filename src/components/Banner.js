@@ -50,22 +50,24 @@ const styles = {
 
 // 더미 데이터 (배너에 표시할 도서들)
 const books = [
-    {
-        title: "소년이로 <br />(편혜영 소설집)",
-        img: "https://shopping-phinf.pstatic.net/main_3243615/32436154262.20221019142158.jpg",
-        styles: { backgroundColor: "#222" },
-        isbn : "9788932035338"
-    },
-    {
-        title: "82년생 김지영",
-        img: "https://via.placeholder.com/200x300.png?text=82년생+김지영",
-        styles: { backgroundColor: "#333" }
-    },
-    {
-        title: "작별하지 않는다",
-        img: "https://via.placeholder.com/200x300.png?text=작별하지+않는다",
-        styles: { backgroundColor: "#444" }
-    }
+  {
+      title: "소년이로 <br />(편혜영 소설집)",
+      img: "https://shopping-phinf.pstatic.net/main_3243615/32436154262.20221019142158.jpg",
+      styles: { backgroundColor: "#222" },
+      isbn : "9788932035338"
+  },
+  {
+      title: "82년생 김지영",
+      img: "https://shopping-phinf.pstatic.net/main_3246707/32467074651.20231003084626.jpg?type=w300",
+      styles: { backgroundColor: "#333" },
+      isbn : "9788937473135"
+  },
+  {
+      title: "작별하지 않는다",
+      img: "https://shopping-phinf.pstatic.net/main_3243636/32436366634.20231124160335.jpg?type=w300",
+      styles: { backgroundColor: "#444" },
+      isbn: "9788954682152"
+  }
 ];
 
 function Banner() {

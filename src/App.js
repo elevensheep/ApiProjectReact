@@ -9,6 +9,8 @@ import Signup from "./components/Signup";
 import BookSearch from "./components/BookSearch";
 import BookListPage from "./components/BookListPage"
 import { BookmarkProvider } from "./components/BookmarkContext";
+import BookDetail from "./components/BookDetail";
+
 const styles = {
     wrapper : {
         width : "60%",
@@ -39,6 +41,8 @@ function App() {
                             <Route path="/signup" element={<Signup />} />
                             <Route path="/booksearch" element={<BookSearch />} />
                             <Route path="/books" element={<BookListPage />}></Route>
+                            <Route path="/book/:isbn" element={<BookDetail />}></Route>
+
                         </Routes>
                     </div>
                 </div>
