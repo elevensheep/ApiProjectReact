@@ -57,14 +57,16 @@ const books = [
         isbn : "9788932035338"
     },
     {
-        title: "82년생 김지영",
-        img: "https://via.placeholder.com/200x300.png?text=82년생+김지영",
-        styles: { backgroundColor: "#333" }
+        title: "책벌레와 <br />메모광",
+        img: "https://shopping-phinf.pstatic.net/main_3249787/32497871709.20241003071349.jpg",
+        styles: { backgroundColor: "#333" },
+        isbn : "9788954638159"
     },
     {
-        title: "작별하지 않는다",
-        img: "https://via.placeholder.com/200x300.png?text=작별하지+않는다",
-        styles: { backgroundColor: "#444" }
+        title: "어두운 숲 <br />(니콜 크라우스 장편소설)",
+        img: "https://shopping-phinf.pstatic.net/main_3243634/32436342750.20230516164604.jpg",
+        styles: { backgroundColor: "#444" },
+        isbn: "9788954671835"
     }
 ];
 
