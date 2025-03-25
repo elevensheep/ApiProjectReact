@@ -149,7 +149,11 @@ const Book = ({
             }}
           >
             {isBookmarked ? (
+<<<<<<< HEAD
               <Bookmark size={30} color="#f39c12" fill="#f39c12" />
+=======
+              <Bookmark size={30} color="#b395d6" fill="#b395d6" />
+>>>>>>> upstream/main
             ) : (
               <Bookmark size={30} color="#aaa" />
             )}
@@ -219,7 +223,11 @@ const Book = ({
           }}
         >
           {isBookmarked ? (
+<<<<<<< HEAD
             <Bookmark size={30} color="#f39c12" fill="#f39c12" />
+=======
+            <Bookmark size={30} color="#b395d6" fill="#b395d6" />
+>>>>>>> upstream/main
           ) : (
             <Bookmark size={30} color="#aaa" />
           )}

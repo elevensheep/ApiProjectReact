@@ -9,6 +9,8 @@ import Signup from "./components/Signup";
 import BookSearch from "./components/BookSearch";
 import BookListPage from "./components/BookListPage"
 import { BookmarkProvider } from "./components/BookmarkContext";
+import Book from "./components/Book";
+import BookDetail from "./components/BookDetail";
 const styles = {
     wrapper : {
         width : "60%",

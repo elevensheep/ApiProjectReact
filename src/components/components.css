@@ -50,10 +50,17 @@ h2 {
     transition: color 0.3s;
     font-size: 18px;
 }
+<<<<<<< HEAD
 
 .nav-item:hover {
     color: #388e3c;
 }
+=======
+/* 
+.nav-item:hover {
+    color: #388e3c;
+} */
+>>>>>>> upstream/main
 
 /* 🔥 기본 링크 스타일 제거 */
 .nav-item a {
@@ -64,13 +71,21 @@ h2 {
 
 /* 🔥 Hover(마우스 올렸을 때) 스타일 */
 .nav-item a:hover {
+<<<<<<< HEAD
     color: #ff6347;
+=======
+    color: #b395d6;
+>>>>>>> upstream/main
     /* 원하는 색상으로 변경 (예: 주황색) */
 }
 
 /* 🔥 선택된 링크 (활성화된 페이지) 스타일 */
 .nav-item a.active {
+<<<<<<< HEAD
     color: #ff6347;
+=======
+    color: #b395d6;
+>>>>>>> upstream/main
     /* 활성화된 상태일 때 색상 변경 */
     text-decoration: underline;
     /* 선택된 페이지 밑줄 */
@@ -94,7 +109,11 @@ h2 {
 
 /* 마우스 올렸을 때 효과 */
 .header h1 a:hover {
+<<<<<<< HEAD
     color: #ff6347;
+=======
+    color: #b395d6;
+>>>>>>> upstream/main
     /* 원하는 색상으로 변경 (예: 오렌지색) */
 }
 
